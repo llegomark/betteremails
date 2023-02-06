@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
 import ResizablePanel from "../components/ResizablePanel";
 import { useRouter } from "next/router";
+import { InformationCircleIcon } from "@heroicons/react/20/solid";
 
 const Home: NextPage = () => {
   const [response, setResponse] = useState<Record<string, unknown> | null>(
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {}, []);
 
-  const prompt = `Respected OpenAI, as a language expert, I request your help in either improving my email or writing a comprehensive and effective email that appears to be written by a human. Please ensure that the email sounds natural, engaging, and free of any robotic or artificial tone. If you are improving my email or writing a new email, please use the following message as inspiration: ${verse}. In either case, the email should be at least 100 words, clearly labeled as "1." and should be tailored to the ${bible} category. Thank you for your assistance. Note: If the user says or indicates "Write a Reply", "Please reply", "Reply", or "Please write a reply" OpenAI should write a reply to the email. ${
+  const prompt = `Respected OpenAI, as a language expert, I request your help in either improving my email or writing a comprehensive and effective email that appears to be written by a human. Please ensure that the email sounds natural, engaging, and free of any robotic or artificial tone. If you are improving my email or writing a new email, please use the following message as inspiration: ${verse}. In either case, the email should be at least 100 words, clearly labeled as "1." and should be tailored to the ${bible} category. Note: If the user says or indicates "Write a Reply", "Please reply", "Reply", or "Please write a reply" you should write a reply to the email. ${
     verse.slice(-1) === "." ? "" : "."
   }`;
 
@@ -149,7 +150,7 @@ const Home: NextPage = () => {
 
       <Header />
       <main className="sm:mt-15 mt-12 flex flex-1 flex-col items-center justify-center px-4 text-center">
-        <h2 className="mx-auto max-w-4xl text-5xl font-bold tracking-normal text-slate-900 sm:text-7xl">
+        <h2 className="mx-auto max-w-4xl text-5xl font-bold tracking-normal text-slate-900 sm:text-6xl md:text-7xl">
           Experience Effortless Email Writing with Artificial Intelligence (AI)
         </h2>
         <p className="mx-auto mt-12 max-w-xl text-lg leading-7 text-slate-900 sm:text-base lg:text-lg">
@@ -237,7 +238,7 @@ const Home: NextPage = () => {
                         const trimmedVerse = generatedVerse.trim();
                         return (
                           <div
-                            className="bg-blue-100 rounded-xl shadow-md p-4 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 cursor-copy border"
+                            className="bg-sky-200 rounded-xl shadow-md p-4 hover:bg-sky-100 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 cursor-copy border"
                             onClick={() => {
                               navigator.clipboard.writeText(
                                 `${trimmedVerse} (generated from https://emails.betterself.app/)`
@@ -254,14 +255,17 @@ const Home: NextPage = () => {
                           </div>
                         );
                       })}
-                    <p className="bg-yellow-200 p-3 text-justify text-yellow-800 font-light leading-tight rounded-lg text-xs mt-2">
-                      Click email to copy (pre-formatted). Please note that the
-                      generated emails are created by an AI language model and
-                      may not always produce perfect results. It is the
-                      responsibility of the user to review and edit the
-                      generated emails as needed before sending. BetterEmails
-                      accepts no liability for any errors or omissions in the
-                      generated emails.
+                    <p className="flex bg-yellow-200 p-3 text-justify text-yellow-800 font-light leading-tight rounded-lg text-xs mt-2">
+                      <InformationCircleIcon className="h-20 w-20 mr-2" />
+                      <span>
+                        Click email to copy (pre-formatted). Please note that
+                        the generated emails are created by an AI language model
+                        and may not always produce perfect results. It is the
+                        responsibility of the user to review and edit the
+                        generated emails as needed before sending. BetterEmails
+                        accepts no liability for any errors or omissions in the
+                        generated emails.
+                      </span>
                     </p>
                   </div>
                 </>
