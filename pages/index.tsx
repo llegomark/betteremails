@@ -8,7 +8,6 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
 import ResizablePanel from "../components/ResizablePanel";
-import SquigglyLines from "../components/SquigglyLines";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
@@ -23,7 +22,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {}, []);
 
-  const prompt = `Respected OpenAI, as a language expert, I request your help in either improving my email or writing a comprehensive and effective email that appears to be written by a human. Please ensure that the email sounds natural, engaging, and free of any robotic or artificial tone. If you are improving my email or writing a new email, please use the following message as inspiration: ${verse}. In either case, the email should be at least 100 words, clearly labeled as "1." and should be tailored to the ${bible} category. Thank you for your assistance. ${
+  const prompt = `Respected OpenAI, as a language expert, I request your help in either improving my email or writing a comprehensive and effective email that appears to be written by a human. Please ensure that the email sounds natural, engaging, and free of any robotic or artificial tone. If you are improving my email or writing a new email, please use the following message as inspiration: ${verse}. In either case, the email should be at least 100 words, clearly labeled as "1." and should be tailored to the ${bible} category. Thank you for your assistance. Note: If the user says or indicates "Write a Reply", "Please reply", "Reply", or "Please write a reply" OpenAI should write a reply to the email. ${
     verse.slice(-1) === "." ? "" : "."
   }`;
 
@@ -151,13 +150,9 @@ const Home: NextPage = () => {
       <Header />
       <main className="sm:mt-15 mt-12 flex flex-1 flex-col items-center justify-center px-4 text-center">
         <h2 className="mx-auto max-w-4xl text-5xl font-bold tracking-normal text-slate-900 sm:text-7xl">
-          Experience Effortless Email Writing with{" "}
-          <span className="relative whitespace-nowrap text-[#3290EE]">
-            <SquigglyLines />
-            <span className="relative">AI Assistance</span>
-          </span>
+          Experience Effortless Email Writing with Artificial Intelligence (AI)
         </h2>
-        <p className="mx-auto mt-12 max-w-xl text-lg leading-7 text-slate-900">
+        <p className="mx-auto mt-12 max-w-xl text-lg leading-7 text-slate-900 sm:text-base lg:text-lg">
           Say goodbye to the hassle of crafting emails. With our AI-powered
           language expertise, you can now write professional, engaging, and
           effective emails with ease. Get started today and experience the power
@@ -169,7 +164,7 @@ const Home: NextPage = () => {
               1
             </span>
             <p className="ml-3 text-left text-base">
-              Provide a short email message/inspiration.
+              Paste or type your draft email.
             </p>
           </div>
           <textarea
@@ -185,14 +180,14 @@ const Home: NextPage = () => {
             rows={4}
             className="w-full mt-5 rounded-lg shadow-sm focus:outline-none focus:shadow-outline"
             placeholder={
-              "Please provide the message or inspiration you would like the email to be based on. If you are requesting an improvement to an existing email, please paste the email in its entirety below. Ensure that the message is at least 30 words and specify the desired email category (e.g. formal, friendly, business)."
+              "Please provide email message/inspiration or paste existing email. Specify email category (e.g. formal, friendly, business). If replying, start with 'Please write a reply to this email'."
             }
           />
           <div className="flex mt-5 items-center space-x-3">
             <span className="text-white bg-black rounded-full w-8 h-8 text-center flex items-center justify-center">
               2
             </span>
-            <p className="ml-3 text-left text-base">Select email category.</p>
+            <p className="ml-3 text-left text-base">Select your tone.</p>
           </div>
           <div className="block mt-3">
             <DropDown
@@ -206,7 +201,7 @@ const Home: NextPage = () => {
               onClick={(e) => generateVerse(e)}
               disabled={isDisabled()}
             >
-              Generate Emails &rarr;
+              Generate Email &rarr;
             </button>
           )}
           {loading && (
@@ -260,12 +255,13 @@ const Home: NextPage = () => {
                         );
                       })}
                     <p className="bg-yellow-200 p-3 text-justify text-yellow-800 font-light leading-tight rounded-lg text-xs mt-2">
-                      Click emails to copy. Please note that the generated
-                      emails are created by an AI language model and may not
-                      always produce perfect results. It is the responsibility
-                      of the user to review and edit the generated emails as
-                      needed before sending. BetterEmails accepts no liability
-                      for any errors or omissions in the generated emails.
+                      Click email to copy (pre-formatted). Please note that the
+                      generated emails are created by an AI language model and
+                      may not always produce perfect results. It is the
+                      responsibility of the user to review and edit the
+                      generated emails as needed before sending. BetterEmails
+                      accepts no liability for any errors or omissions in the
+                      generated emails.
                     </p>
                   </div>
                 </>
